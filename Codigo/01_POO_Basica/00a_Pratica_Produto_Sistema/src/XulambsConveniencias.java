@@ -1,3 +1,4 @@
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -55,7 +56,7 @@ public class XulambsConveniencias {
             System.out.print("Descrição do produto: ");
             descricao = teclado.nextLine();
             System.out.print("Valor unitário do produto: ");
-            valorUnitario = Double.parseDouble(teclado.nextLine());
+            valorUnitario = Double.parseDouble(teclado.nextLine().replace(',', '.'));
             novo = new Produto();
             novo.registrar(descricao, valorUnitario);
             novosProdutos[quantosProdutos] = novo;
@@ -81,6 +82,33 @@ public class XulambsConveniencias {
     }
     
     public static void main(String[] args) {
-        
+        String mensagemInicial = "Xulambs Conveniências";
+        double valorTotalVendido =0d;
+        Produto[] produtos = cadastrarProdutos();
+        int opcao = exibirMenu();
+        switch (opcao) {
+            case 1 -> iniciarVenda();
+            case 2 -> mostrarTotalVendido(valorTotalVendido);
+        }
+    }
+
+    private static Object iniciarVenda() {
+        Produto produto = escolherProduto();
+        while (produto != null) {
+            adicionarNaVenda(produto);
+            produto = escolherProduto();
+        }
+    }
+
+    private static void mostrarTotalVendido(double total) {
+        NumberFormat moeda = NumberFormat.getCurrencyInstance();
+        System.out.println("Xulambs Conveniências");
+        System.out.printf("Valor total vendido hoje: %s", moeda.format(total));
+    }
+
+    private static int exibirMenu() {
+        System.out.println("Xulambs Conveniências");
+        System.out.print("1 - Realizar Venda\n2 - Verificar valor total vendido\n0 - Finalizar\nSua opção: ");
+        return Integer.parseInt(teclado.nextLine());
     }
 }
