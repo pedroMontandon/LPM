@@ -25,7 +25,7 @@ import java.util.Scanner;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
+static String mensagemInicial = "Xulambs Conveniências";
 /** Sistema de Vendas para a Xulambs Conveniências. */
 public class XulambsConveniencias {
     static Scanner teclado = new Scanner(System.in);
@@ -82,7 +82,6 @@ public class XulambsConveniencias {
     }
     
     public static void main(String[] args) {
-        String mensagemInicial = "Xulambs Conveniências";
         double valorTotalVendido =0d;
         Produto[] produtos = cadastrarProdutos();
         int opcao = exibirMenu();
@@ -102,12 +101,12 @@ public class XulambsConveniencias {
 
     private static void mostrarTotalVendido(double total) {
         NumberFormat moeda = NumberFormat.getCurrencyInstance();
-        System.out.println("Xulambs Conveniências");
+        System.out.println(mensagemInicial);
         System.out.printf("Valor total vendido hoje: %s", moeda.format(total));
     }
 
     private static int exibirMenu() {
-        System.out.println("Xulambs Conveniências");
+        System.out.println(mensagemInicial);
         System.out.print("1 - Realizar Venda\n2 - Verificar valor total vendido\n0 - Finalizar\nSua opção: ");
         return Integer.parseInt(teclado.nextLine());
     }
